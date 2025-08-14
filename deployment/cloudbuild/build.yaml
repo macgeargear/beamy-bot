@@ -23,5 +23,7 @@ steps:
       - -c
       - gcloud run services replace ./deployment/cloudrun/service.yaml --region "$REGION" --project "$PROJECT_ID"
 
+logsBucket: "gs://${PROJECT_ID}-cloudbuild"
+
 images:
   - "asia-southeast1-docker.pkg.dev/$PROJECT_ID/beamy-bot/beamy-bot:latest"
