@@ -8,7 +8,7 @@ steps:
       [
         "build",
         "-t",
-        "asia-southeast1-docker.pkg.dev/$PROJECT_ID/beamy-bot/beamy-bot:latest",
+        "us-central1-docker.pkg.dev/$PROJECT_ID/beamy-bot/beamy-bot:latest",
         ".",
       ]
 
@@ -17,7 +17,7 @@ steps:
     args:
       [
         "push",
-        "asia-southeast1-docker.pkg.dev/$PROJECT_ID/beamy-bot/beamy-bot:latest",
+        "us-central1-docker.pkg.dev/$PROJECT_ID/beamy-bot/beamy-bot:latest",
       ]
 
   - id: "substitue-env"
@@ -47,4 +47,4 @@ steps:
 logsBucket: "gs://${PROJECT_ID}-cloudbuild"
 
 images:
-  - "asia-southeast1-docker.pkg.dev/$PROJECT_ID/beamy-bot/beamy-bot:latest"
+  - "us-central1-docker.pkg.dev/$PROJECT_ID/beamy-bot/beamy-bot:latest"
