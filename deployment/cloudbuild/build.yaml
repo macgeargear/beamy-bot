@@ -1,5 +1,4 @@
-options:
-  logging: CLOUD_LOGGING_ONLY
+logsBucket: "gs://poc-beam-capstone-cloudbuild"
 
 steps:
   - id: "build docker image"
