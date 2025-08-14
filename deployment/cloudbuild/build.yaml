@@ -17,6 +17,15 @@ steps:
         "asia-southeast1-docker.pkg.dev/$PROJECT_ID/beamy-bot/beamy-bot:latest",
       ]
 
+  - id: "substitue-env"
+    name: "gcr.io/${PROJECT_ID}/envsubst"
+    env:
+      - "PROJECT_ID=${PROJECT_ID}"
+      - "PROJECT_NUMBER=${PROJECT_NUMBER}"
+      - "SHORT_SHA=${SHORT_SHA}"
+      - "BUILD_ID=${BUILD_ID}"
+    args: ["deployment/**/*.env"]
+
   - id: "run beamy-bot"
     entrypoint: bash
     args:
