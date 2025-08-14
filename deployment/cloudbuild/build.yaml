@@ -31,10 +31,18 @@ steps:
     args: ["deployment/**/*.env"]
 
   - id: "run beamy-bot"
-    entrypoint: bash
+    name: "gcr.io/cloud-builders/gcloud"
     args:
-      - -c
-      - gcloud run services replace ./deployment/cloudrun/service.yaml --region "asia-southeast1" --project "$PROJECT_ID"
+      [
+        "run",
+        "services",
+        "replace",
+        "deployment/cloudrun/service.yaml",
+        "--region",
+        "asia-southeast1",
+        "--project",
+        "$PROJECT_ID",
+      ]
 
 logsBucket: "gs://${PROJECT_ID}-cloudbuild"
 
