@@ -34,7 +34,7 @@ steps:
     entrypoint: bash
     args:
       - -c
-      - gcloud run services replace ./deployment/cloudrun/service.yaml --region "$REGION" --project "$PROJECT_ID"
+      - gcloud run services replace ./deployment/cloudrun/service.yaml --region "asia-southeast1" --project "$PROJECT_ID"
 
 logsBucket: "gs://${PROJECT_ID}-cloudbuild"
 
