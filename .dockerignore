@@ -1,0 +1,15 @@
+.git
+.gitignore
+
+.vscode
+.idea
+
+bin/
+out/
+dist/
+*.log
+
+.env
+*.env
+*.key
+*.json

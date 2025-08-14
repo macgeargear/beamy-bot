@@ -1,0 +1,44 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: beamy-bot
+  namespace: poc-beam-capstone
+  annotations:
+    run.googleapis.com/ingress: all
+    run.googleapis.com/client-name: manual-yaml
+spec:
+  template:
+    metadata:
+      annotations:
+        run.googleapis.com/execution-environment: gen2
+        run.googleapis.com/cpu-throttling: "true"
+        run.googleapis.com/startup-cpu-boost: "true"
+        run.googleapis.com/client-name: manual-yaml
+    spec:
+      serviceAccountName: line-bot-poc@poc-beam-capstone.iam.gserviceaccount.com
+      timeoutSeconds: 300
+      containers:
+        - image: asia-southeast1-docker.pkg.dev/poc-beam-capstone/beamy-bot/beamy-bot:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PROJECT_ID
+              value: "poc-beam-capstone"
+            - name: LOCATION
+              value: "asia-southeast1"
+            - name: GOOGLE_GENAI_USE_VERTEXAI
+              value: "1"
+            - name: LINE_CHANNEL_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: LINE_CHANNEL_SECRET
+                  key: latest
+            - name: LINE_CHANNEL_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: LINE_CHANNEL_SECRET
+                  key: latest
+          resources:
+            limits:
+              cpu: "1"
+              memory: "512Mi"
